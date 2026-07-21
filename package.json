@@ -1,0 +1,32 @@
+{
+  "name": "si-parte-ma-dove",
+  "version": "1.0.0",
+  "description": "Un'esperienza digitale statica per rivelare un regalo di laurea.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "format": "prettier --write .",
+    "check:astro": "astro check",
+    "check:design": "node .agents/skills/impeccable/scripts/detect.mjs --json src public"
+  },
+  "keywords": [],
+  "author": "Daniel",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@lucide/astro": "^1.25.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.3",
+    "lenis": "^1.3.25",
+    "motion": "^12.42.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "playwright": "^1.61.1",
+    "prettier": "^3.9.6",
+    "prettier-plugin-astro": "^0.14.1"
+  }
+}

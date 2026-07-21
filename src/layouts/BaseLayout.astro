@@ -1,0 +1,52 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "@styles/global.css";
+
+type Props = {
+  title?: string;
+  description?: string;
+  image?: string;
+  preloadImage?: boolean;
+};
+
+const {
+  title = "Si parte, ma dove?",
+  description = "Una piccola sorpresa di laurea, da scoprire con calma.",
+  image,
+  preloadImage = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#f8f5ee" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    {image && preloadImage && <link rel="preload" as="image" href={image} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {image && <meta property="og:image" content={image} />}
+    <title>{title}</title>
+    <ClientRouter />
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <div class="app-shell page-transition">
+      <slot />
+    </div>
+    <div class="noise" aria-hidden="true"></div>
+    <script src="../scripts/experience.ts"></script>
+  </body>
+</html>

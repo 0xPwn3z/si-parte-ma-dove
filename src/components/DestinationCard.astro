@@ -1,0 +1,57 @@
+---
+import { ArrowRight } from "@lucide/astro";
+import type { Destination } from "@data/destinations";
+import { withBase } from "@utils/paths";
+
+type Props = {
+  destination: Destination;
+  index: number;
+};
+
+const { destination, index } = Astro.props;
+---
+
+<a
+  href={withBase(`/viaggio/${destination.slug}/`)}
+  class="destination-card reveal group block overflow-hidden rounded-[8px] border border-inchiostro/10 bg-white/45 shadow-card"
+  style={`--delay:${index * 120}ms`}
+  data-lift
+  aria-label={`Scopri ${destination.name}`}
+>
+  <div class="relative aspect-[3/4] overflow-hidden">
+    <img
+      src={destination.images.card}
+      alt={destination.images.cardAlt}
+      loading={index === 0 ? "eager" : "lazy"}
+      decoding="async"
+      class="h-full w-full object-cover transition-transform duration-[900ms] ease-[var(--ease-out-soft)] group-hover:scale-[1.035]"
+      transition:name={`${destination.slug}-image`}
+    />
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 bg-[linear-gradient(180deg,transparent_40%,oklch(0.12_0.018_80/.72))]"
+    >
+    </div>
+    <div class="absolute inset-x-0 bottom-0 p-5 text-avorio">
+      <p class="mb-2 text-[0.92rem] text-avorio/80">{destination.accent}</p>
+      <h3
+        class="serif text-[clamp(2.05rem,8vw,3rem)] font-semibold leading-[1] tracking-[-0.01em]"
+        transition:name={`${destination.slug}-title`}
+      >
+        {destination.name}
+      </h3>
+      <p class="mt-4 max-w-[16rem] text-[1rem] leading-6 text-avorio/86">
+        {destination.cardLine}
+      </p>
+    </div>
+  </div>
+  <div class="flex min-h-[64px] items-center justify-between gap-4 px-5 py-3 text-inchiostro">
+    <span class="text-[1rem] font-medium">Apri questo capitolo</span>
+    <span
+      class="grid size-10 shrink-0 place-items-center rounded-full bg-verde-profondo text-avorio transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:translate-x-1"
+      aria-hidden="true"
+    >
+      <ArrowRight size={18} stroke-width={1.8} />
+    </span>
+  </div>
+</a>

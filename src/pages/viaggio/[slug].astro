@@ -1,0 +1,46 @@
+---
+import ChoiceSection from "@components/ChoiceSection.astro";
+import CuriositySection from "@components/CuriositySection.astro";
+import DestinationHero from "@components/DestinationHero.astro";
+import GallerySection from "@components/GallerySection.astro";
+import MomentsSection from "@components/MomentsSection.astro";
+import WhySection from "@components/WhySection.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { destinations, getDestination } from "@data/destinations";
+
+export const getStaticPaths = () =>
+  destinations.map((destination) => ({
+    params: { slug: destination.slug },
+  }));
+
+const destination = getDestination(Astro.params.slug ?? "");
+
+if (!destination) {
+  return Astro.redirect("/");
+}
+---
+
+<BaseLayout
+  title={`${destination.name} | Si parte, ma dove?`}
+  description={`${destination.name}: una delle tre piccole avventure da scegliere insieme.`}
+  image={destination.images.hero}
+  preloadImage
+>
+  <main>
+    <DestinationHero destination={destination} />
+
+    <WhySection paragraphs={destination.why} />
+
+    <div class="mx-auto w-full max-w-[960px] px-[var(--site-pad)]">
+      <div class="hairline"></div>
+    </div>
+
+    <MomentsSection moments={destination.moments} />
+
+    <GallerySection gallery={destination.images.gallery} name={destination.name} />
+
+    <CuriositySection curiosity={destination.curiosity} />
+
+    <ChoiceSection />
+  </main>
+</BaseLayout>

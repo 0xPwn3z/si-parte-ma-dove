@@ -1,0 +1,54 @@
+---
+import ChoiceSection from "@components/ChoiceSection.astro";
+import DestinationCard from "@components/DestinationCard.astro";
+import IntroChapter from "@components/IntroChapter.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { destinations } from "@data/destinations";
+---
+
+<BaseLayout
+  title="Si parte, ma dove?"
+  description="Una piccola sorpresa di laurea, con tre città da scegliere insieme."
+  image={destinations[0].images.hero}
+>
+  <main>
+    <IntroChapter />
+
+    <section
+      id="destinazioni"
+      class="relative px-[var(--site-pad)] py-20 sm:py-28"
+      aria-labelledby="titolo-destinazioni"
+    >
+      <div class="mx-auto max-w-[1120px]">
+        <div class="max-w-[740px]">
+          <p class="reveal text-[1.02rem] font-medium text-verde-profondo">
+            Ti ho preparato tre possibilità.
+          </p>
+          <h2
+            id="titolo-destinazioni"
+            class="serif reveal mt-5 text-[clamp(2.05rem,6.4vw,3.6rem)] font-semibold leading-[1.05] tracking-[-0.01em] sm:leading-[1.02]"
+          >
+            Tre città, una sola promessa: partire insieme.
+          </h2>
+          <p class="reveal mt-7 max-w-[38rem] text-[1.14rem] leading-[1.78] text-inchiostro-morbido">
+            Le ho scelte pensando a un weekend leggero, a strade nuove e a quel
+            momento preciso in cui smettiamo di parlare di programmi e iniziamo solo
+            a guardarci intorno.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-5 min-[480px]:grid-cols-2 lg:grid-cols-3">
+          {destinations.map((destination, index) => (
+            <DestinationCard destination={destination} index={index} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="mx-auto my-8 w-full max-w-[960px] px-[var(--site-pad)]">
+      <div class="hairline"></div>
+    </div>
+
+    <ChoiceSection />
+  </main>
+</BaseLayout>

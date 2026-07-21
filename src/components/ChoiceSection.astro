@@ -1,0 +1,48 @@
+---
+import { Heart, Sparkles } from "@lucide/astro";
+import { destinations } from "@data/destinations";
+---
+
+<section
+  class="relative overflow-hidden px-[var(--site-pad)] py-24 sm:py-32"
+  aria-labelledby="scelta-finale"
+  data-choice-area
+>
+  <div class="pointer-events-none absolute inset-0" data-particles aria-hidden="true"></div>
+  <div class="mx-auto flex max-w-[780px] flex-col items-center text-center">
+    <div class="reveal mb-7 grid size-14 place-items-center rounded-full bg-oro-chiaro text-verde-profondo">
+      <Heart size={22} stroke-width={1.7} aria-hidden="true" />
+    </div>
+    <h2
+      id="scelta-finale"
+      class="serif reveal text-[clamp(2.1rem,6.5vw,3.8rem)] font-semibold leading-[1.05] tracking-[-0.01em] sm:leading-[1.02]"
+      data-choice-title
+    >
+      Quale avventura vorresti vivere?
+    </h2>
+    <p
+      class="reveal mt-7 max-w-[34rem] text-[1.14rem] leading-[1.75] text-inchiostro-morbido"
+      data-choice-text
+    >
+      Scegli quella che ti fa sorridere per prima. Poi ci pensiamo noi, con calma,
+      come si fanno le cose belle.
+    </p>
+
+    <div class="reveal mt-10 grid w-full gap-3 min-[480px]:grid-cols-3">
+      {destinations.map((destination) => (
+        <button
+          type="button"
+          class="choice-button relative inline-flex min-h-[58px] items-center justify-center gap-2 overflow-hidden border border-inchiostro/12 bg-white/45 px-5 py-3 text-[1.06rem] font-semibold text-inchiostro shadow-[0_16px_36px_oklch(0.19_0.025_82/.08)] backdrop-blur-sm"
+          data-choice={destination.name}
+          data-selected-line={destination.selectedLine}
+          aria-pressed="false"
+        >
+          <span>{destination.name}</span>
+          <Sparkles size={17} stroke-width={1.7} aria-hidden="true" />
+        </button>
+      ))}
+    </div>
+
+    <p class="sr-only" aria-live="polite" data-choice-live></p>
+  </div>
+</section>

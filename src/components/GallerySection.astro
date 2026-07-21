@@ -1,0 +1,53 @@
+---
+import type { Destination } from "@data/destinations";
+
+type Props = {
+  gallery: Destination["images"]["gallery"];
+  name: string;
+};
+
+const { gallery, name } = Astro.props;
+---
+
+<section class="px-[var(--site-pad)] py-16 sm:py-24" aria-labelledby="galleria">
+  <div class="mx-auto max-w-[1180px]">
+    <h2 id="galleria" class="serif reveal text-[clamp(1.95rem,6vw,3.2rem)] font-semibold leading-[1.06] tracking-[-0.01em]">
+      Galleria
+    </h2>
+    <p class="reveal mt-5 max-w-[36rem] text-[1.08rem] leading-8 text-inchiostro-morbido">
+      Piccoli indizi di {name}, giusto abbastanza per iniziare a immaginarci lì.
+    </p>
+
+    <div class="mt-10 grid gap-4 md:grid-cols-[1.05fr_0.95fr] md:items-stretch">
+      <figure class="image-mask relative aspect-[4/5] overflow-hidden shadow-soft md:aspect-auto md:min-h-[620px]">
+        <img
+          src={gallery[0].src}
+          alt={gallery[0].alt}
+          loading="lazy"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
+        <figcaption class="absolute inset-x-0 bottom-0 bg-[linear-gradient(180deg,transparent,oklch(0.12_0.014_82/.62))] px-5 pb-5 pt-24 text-[1rem] text-avorio">
+          {gallery[0].caption}
+        </figcaption>
+      </figure>
+
+      <div class="grid gap-4">
+        {gallery.slice(1).map((item, index) => (
+          <figure class="image-mask relative aspect-[4/3] overflow-hidden shadow-soft" style={`--delay:${(index + 1) * 120}ms`}>
+            <img
+              src={item.src}
+              alt={item.alt}
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
+            <figcaption class="absolute inset-x-0 bottom-0 bg-[linear-gradient(180deg,transparent,oklch(0.12_0.014_82/.6))] px-5 pb-5 pt-20 text-[1rem] text-avorio">
+              {item.caption}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

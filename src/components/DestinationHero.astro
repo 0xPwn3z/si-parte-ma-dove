@@ -1,0 +1,54 @@
+---
+import { ArrowLeft } from "@lucide/astro";
+import type { Destination } from "@data/destinations";
+import { withBase } from "@utils/paths";
+
+type Props = {
+  destination: Destination;
+};
+
+const { destination } = Astro.props;
+---
+
+<header
+  class="relative min-h-[100svh] px-[var(--site-pad)] pb-[calc(2rem+var(--safe-bottom))] pt-[calc(1rem+var(--safe-top))]"
+>
+  <a href={withBase("/")} class="button-quiet absolute left-4 top-[calc(1rem+var(--safe-top))] z-40 h-12 px-4 text-[0.98rem]">
+    <ArrowLeft size={18} stroke-width={1.8} aria-hidden="true" />
+    <span>Indietro</span>
+  </a>
+
+  <div class="mx-auto flex min-h-[calc(100svh-3rem-var(--safe-top)-var(--safe-bottom))] max-w-[1220px] flex-col justify-end gap-7 pt-20 lg:grid lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
+    <div class="relative order-2 lg:order-1">
+      <p class="reveal text-[0.98rem] font-medium text-verde-profondo">
+        {destination.coordinates}
+      </p>
+      <h1
+        class="serif reveal mt-4 text-[clamp(2.75rem,9vw,5rem)] font-semibold leading-[1] tracking-[-0.015em] text-inchiostro sm:leading-[0.95]"
+        transition:name={`${destination.slug}-title`}
+      >
+        {destination.name}
+      </h1>
+      <p class="reveal mt-6 max-w-[32rem] text-[1.22rem] leading-[1.55] text-inchiostro-morbido">
+        {destination.subtitle}
+      </p>
+    </div>
+
+    <div class="image-mask relative order-1 aspect-[4/5] overflow-hidden shadow-soft lg:order-2 lg:aspect-[5/4]">
+      <img
+        src={destination.images.hero}
+        alt={destination.images.heroAlt}
+        class="h-full w-full object-cover will-change-transform [transform:translate3d(0,var(--parallax-y,0px),0)_scale(1.06)]"
+        data-parallax
+        decoding="async"
+        fetchpriority="high"
+        transition:name={`${destination.slug}-image`}
+      />
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 bg-[linear-gradient(180deg,oklch(0.12_0.014_82/.04),oklch(0.12_0.014_82/.18))]"
+      >
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,68 @@
+---
+import { ArrowRight } from "@lucide/astro";
+---
+
+<section
+  class="relative flex min-h-[100svh] items-center justify-center px-[var(--site-pad)] pb-[calc(2.5rem+var(--safe-bottom))] pt-[calc(2.5rem+var(--safe-top))]"
+  aria-labelledby="titolo-introduzione"
+>
+  <div class="mx-auto flex w-full max-w-[760px] flex-col items-center text-center">
+    <p
+      data-intro-piece
+      class="text-[1.05rem] font-medium text-verde-profondo"
+    >
+      Congratulazioni, Dottoressa. ❤️
+    </p>
+
+    <h1
+      id="titolo-introduzione"
+      data-intro-piece
+      class="serif mt-6 max-w-[12.5ch] text-[clamp(2.15rem,7vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.01em] text-inchiostro sm:leading-[1] sm:max-w-[14ch]"
+    >
+      Hai appena concluso un capitolo.
+      <span class="mt-4 block">Credo sia arrivato il momento di iniziarne uno nuovo.</span>
+    </h1>
+
+    <p
+      data-intro-piece
+      class="mt-7 max-w-[34rem] text-[1.08rem] leading-[1.68] text-inchiostro-morbido sm:text-[1.12rem] sm:leading-[1.75]"
+    >
+      Questo traguardo meritava più di un mazzo di fiori. Meritava una piccola fuga,
+      un posto nuovo, due giorni nostri e la gioia di scegliere insieme dove andare.
+    </p>
+
+    <a
+      data-intro-piece
+      data-lift
+      href="#destinazioni"
+      class="button-primary mt-8 sm:mt-10"
+      aria-label="Inizia a scoprire le destinazioni"
+    >
+      <span>Inizia</span>
+      <ArrowRight size={19} stroke-width={1.8} aria-hidden="true" />
+    </a>
+  </div>
+
+  <div
+    aria-hidden="true"
+    class="absolute bottom-[calc(1.25rem+var(--safe-bottom))] left-1/2 h-10 w-px -translate-x-1/2 overflow-hidden bg-inchiostro/10"
+  >
+    <span class="block h-4 w-px animate-[scrollHint_2.4s_ease-in-out_infinite] bg-oro"></span>
+  </div>
+</section>
+
+<style>
+  @keyframes scrollHint {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    35% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(260%);
+      opacity: 0;
+    }
+  }
+</style>
