@@ -130,8 +130,8 @@ const initChoice = () => {
 
       choiceArea.classList.add("has-choice");
 
-      if (resultTitle) resultTitle.textContent = "Ottima scelta ❤️";
-      if (resultText) resultText.textContent = "Non vedo l'ora di viverla insieme a te.";
+      if (resultTitle) resultTitle.textContent = "Allora è deciso. ❤️";
+      if (resultText) resultText.textContent = "Mi manca già. Adesso preparo tutto io.";
       if (liveRegion) liveRegion.textContent = `Hai scelto ${destination}. ${selectedLine}`;
 
       if (!reduceMotion() && particleHost) {
@@ -176,6 +176,23 @@ const initParallax = () => {
   });
 };
 
+const initScrollProgress = () => {
+  const bar = document.querySelector<HTMLElement>(".scroll-progress");
+  if (!bar || bar.dataset.scrollReady === "true") return;
+  bar.dataset.scrollReady = "true";
+
+  const update = () => {
+    const scrollTop = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? Math.min(1, Math.max(0, scrollTop / max)) : 0;
+    bar.style.setProperty("--scroll-progress", progress.toString());
+  };
+
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+};
+
 const initExperience = () => {
   initLenis();
   initReveals();
@@ -183,6 +200,7 @@ const initExperience = () => {
   initTouchFeedback();
   initChoice();
   initParallax();
+  initScrollProgress();
 };
 
 document.addEventListener("astro:page-load", initExperience);

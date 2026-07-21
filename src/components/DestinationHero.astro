@@ -35,15 +35,17 @@ const { destination } = Astro.props;
     </div>
 
     <div class="image-mask relative order-1 aspect-[4/5] overflow-hidden shadow-soft lg:order-2 lg:aspect-[5/4]">
-      <img
-        src={destination.images.hero}
-        alt={destination.images.heroAlt}
-        class="h-full w-full object-cover will-change-transform [transform:translate3d(0,var(--parallax-y,0px),0)_scale(1.06)]"
-        data-parallax
-        decoding="async"
-        fetchpriority="high"
-        transition:name={`${destination.slug}-image`}
-      />
+      <div class="ken-burns absolute inset-0">
+        <img
+          src={destination.images.hero}
+          alt={destination.images.heroAlt}
+          class="h-full w-full object-cover will-change-transform [transform:translate3d(0,var(--parallax-y,0px),0)_scale(1.06)]"
+          data-parallax
+          decoding="async"
+          fetchpriority="high"
+          transition:name={`${destination.slug}-image`}
+        />
+      </div>
       <div
         aria-hidden="true"
         class="absolute inset-0 bg-[linear-gradient(180deg,oklch(0.12_0.014_82/.04),oklch(0.12_0.014_82/.18))]"
