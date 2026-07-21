@@ -7,19 +7,26 @@ const { paragraphs } = Astro.props;
 ---
 
 <section class="px-[var(--site-pad)] py-20 sm:py-28" aria-labelledby="perche">
-  <div class="mx-auto grid max-w-[1040px] gap-9 md:grid-cols-[0.72fr_1.28fr] md:gap-14">
-    <h2 id="perche" class="serif reveal text-[clamp(2rem,6vw,3.4rem)] font-semibold leading-[1.04] tracking-[-0.01em] sm:leading-[1]">
-      Perché ho scelto questa città
+  <div
+    class="mx-auto grid max-w-[1040px] gap-9 md:grid-cols-[0.72fr_1.28fr] md:gap-14"
+  >
+    <h2
+      id="perche"
+      class="serif reveal text-[clamp(2rem,6vw,3.4rem)] font-semibold leading-[1.04] tracking-[-0.01em] sm:leading-[1]"
+    >
+      Perché questa città
     </h2>
     <div class="space-y-7">
-      {paragraphs.map((paragraph, index) => (
-        <p
-          class="reveal max-w-[42rem] text-[1.18rem] leading-[1.82] text-inchiostro-morbido"
-          style={`--delay:${index * 110}ms`}
-        >
-          {paragraph}
-        </p>
-      ))}
+      {
+        paragraphs.map((paragraph, index) => (
+          <p
+            class="reveal max-w-[42rem] text-[1.18rem] leading-[1.82] text-inchiostro-morbido"
+            style={`--delay:${index * 110}ms`}
+          >
+            {paragraph}
+          </p>
+        ))
+      }
     </div>
   </div>
 </section>

@@ -31,17 +31,21 @@ import { destinations } from "@data/destinations";
           >
             Tre città che ho cercato a lungo, per te.
           </h2>
-          <p class="reveal mt-7 max-w-[38rem] text-[1.12rem] leading-[1.78] text-inchiostro-morbido">
-            Nessuna delle tre è a caso. Una per rallentare, una per perderci, una
-            per scoprirne una insieme. Poi sceglierai tu — e qualsiasi cosa sceglierai,
-            sarà quella giusta.
+          <p
+            class="reveal mt-7 max-w-[38rem] text-[1.12rem] leading-[1.78] text-inchiostro-morbido"
+          >
+            Nessuna delle tre è a caso. Una per le terme e il Danubio, una per
+            mura e mare, una per storia e montagne. Poi sceglierai tu — e
+            qualsiasi cosa sceglierai, sarà quella giusta.
           </p>
         </div>
 
         <div class="mt-12 grid gap-5 min-[480px]:grid-cols-2 lg:grid-cols-3">
-          {destinations.map((destination, index) => (
-            <DestinationCard destination={destination} index={index} />
-          ))}
+          {
+            destinations.map((destination, index) => (
+              <DestinationCard destination={destination} index={index} />
+            ))
+          }
         </div>
       </div>
     </section>
