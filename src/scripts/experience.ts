@@ -130,8 +130,8 @@ const initChoice = () => {
 
       choiceArea.classList.add("has-choice");
 
-      if (resultTitle) resultTitle.textContent = "Allora è deciso. ❤️";
-      if (resultText) resultText.textContent = "Mi manca già. Adesso preparo tutto io.";
+      if (resultTitle) resultTitle.textContent = "Allora è deciso.";
+      if (resultText) resultText.textContent = "Ciò che manca ora, è solo organizzare! Auguri amore ❤️";
       if (liveRegion) liveRegion.textContent = `Hai scelto ${destination}. ${selectedLine}`;
 
       if (!reduceMotion() && particleHost) {
